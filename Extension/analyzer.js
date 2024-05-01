@@ -1,5 +1,4 @@
 const btn = document.getElementById("analyze");
-srh.disabled = true;
 btn.addEventListener("click", function() {
     btn.disabled = true;
     btn.innerHTML = "Analyzing...";

@@ -1,11 +1,12 @@
-YouTube-Video-Summariser
-A chrome extension to summarise long YouTube videos by utilising YouTube's transcript feature.
+YouTube Analyzer
+A chrome extension to analyze long YouTube videos by utilising YouTube's transcript feature.
 
 Requirements
 The following python modules must be installed to run the API
 flask
 youtube-transcript-api
 transformers
+gemini
 Instructions
 Run app.py to start the summarizer API.
 Load the custom extension into any Chromium browser.

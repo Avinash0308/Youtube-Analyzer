@@ -10,6 +10,8 @@ btn.addEventListener("click", function () {
       var text = xhr.responseText;
       const p = document.getElementById("output");
       p.innerHTML = text;
+      document.getElementById("follow_up").style.display = "block";
+      document.getElementById("search").style.display = "block";
       const btn2 = document.getElementById("search");
       btn2.addEventListener("click", function () {
         var inputValue = document.getElementById("follow_up").value;

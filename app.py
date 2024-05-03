@@ -39,7 +39,7 @@ def get_answer(question):
 
     convo = question
 
-    genai.configure(api_key="AIzaSyCSLT7qkguZQWQ-i_TeUN6gCqRH_fRzqxw")
+    genai.configure(api_key="Put_It_Here")
 
     # Set up the model
     generation_config = {

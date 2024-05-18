@@ -10,10 +10,9 @@ h1 {
 body {
   background-image: url("images/3.avif");
   background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size:100%;
   width: 120vh;
-  max-width: 600px;
+  max-width: 400px;
 }
 
 button {

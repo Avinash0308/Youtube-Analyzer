@@ -8,9 +8,10 @@ h1 {
   text-align: center;
 }
 body {
-  background-image: url("images/3.avif");
+  background-image: url("images/7.gif");
   background-position: center;
-  background-size:100%;
+  background-size:cover;
+  background-repeat: no-repeat;
   width: 120vh;
   max-width: 400px;
 }

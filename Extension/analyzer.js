@@ -38,7 +38,7 @@ btn.addEventListener("click", function () {
             "GET",
             "http://127.0.0.1:5000/answer?summary=" +
               text +
-              " The text provided here is the transcript of the YouTube Video. Based on the text provided, please answer this question: " +
+              " The text provided here is the transcript of the YouTube Video. Based on the text provided and your general abilities, please answer this question: " +
               inputValue,
             true
           );

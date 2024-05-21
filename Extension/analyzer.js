@@ -3,8 +3,8 @@ const btn = document.getElementById("analyze");
 btn.addEventListener("click", function () {
   btn.disabled = true;
   btn.innerHTML = "Analyzing... ";
-
-  document.getElementById("dot_loader").style.display = "block";
+  document.body.style.backgroundImage = "url(Images/7.gif)";
+  /*document.getElementById("dot_loader").style.display = "block";*/
 
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     var url = tabs[0].url;
@@ -25,12 +25,13 @@ btn.addEventListener("click", function () {
 
       btn2.addEventListener("click", function () {
         document.getElementById("goloader").style.display = "block";
-
+        document.getElementById("follow_up").style.backgroundImage = "url(Images/7.gif)";
         var inputValue = document.getElementById("follow_up").value;
 
         if (inputValue.trim() === "") {
           const p = document.getElementById("answer");
           p.innerHTML = "Please put out your doubts in input box";
+          document.getElementById("follow_up").style.backgroundImage = "url(Images/2.png)";
         } else {
           var zhr = new XMLHttpRequest();
 
@@ -38,7 +39,7 @@ btn.addEventListener("click", function () {
             "GET",
             "http://127.0.0.1:5000/answer?summary=" +
               text +
-              " The text provided here is the transcript of the YouTube Video. Based on the text provided and your general abilities, please answer this question: " +
+              " The text provided here is the transcript of the YouTube Video. Based on the text, please answer the question or perform the task given here: " +
               inputValue,
             true
           );
@@ -48,13 +49,15 @@ btn.addEventListener("click", function () {
             const x = document.getElementById("answer");
             x.innerHTML = ans;
             document.getElementById("goloader").style.display = "none";
+            document.getElementById("follow_up").style.backgroundImage = "url(Images/2.png)";
           };
-
           zhr.send();
         }
       });
-
-      document.getElementById("dot_loader").style.display = "none";
+      
+      /*document.getElementById("dot_loader").style.display = "none";*/
+      
+      document.body.style.backgroundImage = "url(Images/2.png)";
 
       btn.disabled = false;
       btn.innerHTML = "Analyze";

@@ -2,13 +2,15 @@
 
 h1 {
   font-size: 40px;
-  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
-    0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
-  color: #fff6a9;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
   text-align: center;
 }
 body {
-  background-image: url("images/7.gif");
+  background-image: url("Images/2.png");
   background-position: center;
   background-size:cover;
   background-repeat: no-repeat;
@@ -36,7 +38,7 @@ button {
   );
   transition: all 0.5s ease 0s;
   :hover {
-    box-shadow: rgba(84, 78, 132, 0.5) 0px 1px 40px;
+    box-shadow: rgba(84, 78, 132, 0.5) 0px 1px 10px;
     transition: all 0.1s ease 0s;
   }
 }
@@ -48,7 +50,7 @@ button[disabled] {
   width: max-content;
   height: max-content;
   padding: 10px;
-  font-size: large;
+  font-size: small;
   margin: auto;
   display: block;
   border-color: lightpink;
@@ -62,17 +64,11 @@ p {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 5vh;
   justify-content: space-between;
 }
 
 .container1 {
-  background: linear-gradient(
-    92.88deg,
-    rgb(69, 94, 181) 9.16%,
-    rgb(86, 67, 204) 43.89%,
-    rgb(103, 63, 215) 64.72%
-  );
+  background-image: url("images/9.gif");
   display: flex;
   border: 2px solid white;
   border-radius: 20px;
@@ -111,9 +107,15 @@ p {
 }
 
 #follow_up {
+  background-image: url("images/2.png");
+  background-position: center;
+  background-size:cover;
+  background-repeat: no-repeat;
   border-radius: 20px;
   padding: 3vh;
   margin: 2vh;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 #search {
@@ -127,18 +129,6 @@ p {
   font-size: 14px;
   height: 30px;
   padding: 0px 15px;
-  text-shadow: rgb(0 0 0 / 25%) 0px 3px 8px;
-  background: linear-gradient(
-    92.88deg,
-    rgb(69, 94, 181) 9.16%,
-    rgb(86, 67, 204) 43.89%,
-    rgb(103, 63, 215) 64.72%
-  );
-  transition: all 0.5s ease 0s;
-  :hover {
-    box-shadow: rgba(84, 78, 132, 0.5) 0px 1px 40px;
-    transition: all 0.1s ease 0s;
-  }
 }
 
 #goloader {

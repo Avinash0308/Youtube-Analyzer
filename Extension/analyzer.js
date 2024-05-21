@@ -24,14 +24,14 @@ btn.addEventListener("click", function () {
       const btn2 = document.getElementById("search");
 
       btn2.addEventListener("click", function () {
-        document.getElementById("goloader").style.display = "block";
         document.getElementById("follow_up").style.backgroundImage = "url(Images/7.gif)";
         var inputValue = document.getElementById("follow_up").value;
 
         if (inputValue.trim() === "") {
           const p = document.getElementById("answer");
           p.innerHTML = "Please put out your doubts in input box";
-          document.getElementById("follow_up").style.backgroundImage = "url(Images/2.png)";
+          document.getElementById("follow_up").style.backgroundImage =
+            "url(Images/2.png)";
         } else {
           var zhr = new XMLHttpRequest();
 
@@ -48,15 +48,12 @@ btn.addEventListener("click", function () {
             var ans = zhr.responseText;
             const x = document.getElementById("answer");
             x.innerHTML = ans;
-            document.getElementById("goloader").style.display = "none";
             document.getElementById("follow_up").style.backgroundImage = "url(Images/2.png)";
           };
           zhr.send();
         }
       });
-      
-      /*document.getElementById("dot_loader").style.display = "none";*/
-      
+
       document.body.style.backgroundImage = "url(Images/2.png)";
 
       btn.disabled = false;

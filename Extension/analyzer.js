@@ -29,7 +29,6 @@ btn.addEventListener("click", function () {
       btn2.addEventListener("click", function () {
         document.getElementById("follow_up").style.backgroundImage = "url(Images/7.gif)";
         var inputValue = document.getElementById("follow_up").value;
-
         if (inputValue.trim() === "") {
           const p = document.getElementById("answer");
           p.innerHTML = "Please put out your doubts in input box";
@@ -55,6 +54,7 @@ btn.addEventListener("click", function () {
           };
           zhr.send();
         }
+        document.getElementById("follow_up").value = "";
       });
 
       document.body.style.backgroundImage = "url(Images/2.png)";

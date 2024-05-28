@@ -7,8 +7,6 @@ btn.addEventListener("click", function () {
   x.innerHTML = "";
   btn.innerHTML = "Analyzing... ";
   document.body.style.backgroundImage = "url(Images/7.gif)";
-  /*document.getElementById("dot_loader").style.display = "block";*/
-
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     var url = tabs[0].url;
 

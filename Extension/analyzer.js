@@ -1,7 +1,10 @@
 const btn = document.getElementById("analyze");
-
 btn.addEventListener("click", function () {
   btn.disabled = true;
+  document.getElementById("cont").style.display = "none";
+  document.getElementById("output1").style.display = "none";
+  const x = document.getElementById("answer");
+  x.innerHTML = "";
   btn.innerHTML = "Analyzing... ";
   document.body.style.backgroundImage = "url(Images/7.gif)";
   /*document.getElementById("dot_loader").style.display = "block";*/

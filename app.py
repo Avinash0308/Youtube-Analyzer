@@ -12,22 +12,18 @@ def summary_api():
     summary = get_summary(get_transcript(video_id))
     return summary, 200
 
-
 def get_transcript(video_id):
     transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi','en'])
     transcript = ' '.join([d['text'] for d in transcript_list])
     return transcript
 
-
 def get_summary(transcript):
-    summariser = pipeline("summarization")
+    summariser = pipeline(task = "summarization", model = "csebuetnlp/mT5_multilingual_XLSum")
     summary = ''
     for i in range(0, (len(transcript)//1000)+1):
         summary_text = summariser(
             transcript[i*500:(i+1)*500])[0]['summary_text']
         summary = summary + summary_text + ' '
-    if(len(summary) < 500):
-        return transcript
     return summary
 
 @app.get('/answer')
@@ -77,6 +73,14 @@ def get_answer(question):
     conversation.send_message(convo)
 
     return conversation.last.text
+
+@app.get('/transcript')
+def transcript_provider():
+    url = request.args.get('url', '')
+    video_id = url.split('=')[1]
+    transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi','en'])
+    transcript = ' '.join([d['text'] for d in transcript_list])
+    return transcript
 
 if __name__ == '__main__':
     app.run()

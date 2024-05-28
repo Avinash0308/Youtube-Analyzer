@@ -14,7 +14,7 @@ def summary_api():
 
 
 def get_transcript(video_id):
-    transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+    transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi','en'])
     transcript = ' '.join([d['text'] for d in transcript_list])
     return transcript
 
@@ -24,7 +24,7 @@ def get_summary(transcript):
     summary = ''
     for i in range(0, (len(transcript)//1000)+1):
         summary_text = summariser(
-            transcript[i*1000:(i+1)*1000])[0]['summary_text']
+            transcript[i*500:(i+1)*500])[0]['summary_text']
         summary = summary + summary_text + ' '
     return summary
 
@@ -39,7 +39,7 @@ def get_answer(question):
 
     convo = question
 
-    genai.configure(api_key="Put_It_Here")
+    genai.configure(api_key="")
 
     # Set up the model
     generation_config = {

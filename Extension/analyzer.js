@@ -25,7 +25,8 @@ btn.addEventListener("click", function () {
       const btn2 = document.getElementById("search");
 
       btn2.addEventListener("click", function () {
-        document.getElementById("follow_up").style.backgroundImage = "url(Images/7.gif)";
+        document.getElementById("follow_up").style.backgroundImage =
+          "url(Images/7.gif)";
         var inputValue = document.getElementById("follow_up").value;
         if (inputValue.trim() === "") {
           const p = document.getElementById("answer");
@@ -38,8 +39,9 @@ btn.addEventListener("click", function () {
           zhr.open(
             "GET",
             "http://127.0.0.1:5000/answer?summary=" +
+              " Hey, I'll provide you transcript of the YouTube Video. Based on the transcript, please answer the question or perform the task as instructed in the query. Also, if you are unable to respond to the query using the text provided, try to use your general knowledge and common sense to provide best possible solution. Here is the text: " +
               text +
-              " The text provided here is the transcript of the YouTube Video. Based on the text, please answer the question or perform the task given here: " +
+              ". And following is the query/task: " +
               inputValue,
             true
           );
@@ -48,7 +50,8 @@ btn.addEventListener("click", function () {
             var ans = zhr.responseText;
             const x = document.getElementById("answer");
             x.innerHTML = ans;
-            document.getElementById("follow_up").style.backgroundImage = "url(Images/2.png)";
+            document.getElementById("follow_up").style.backgroundImage =
+              "url(Images/2.png)";
           };
           zhr.send();
         }

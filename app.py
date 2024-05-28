@@ -26,6 +26,8 @@ def get_summary(transcript):
         summary_text = summariser(
             transcript[i*500:(i+1)*500])[0]['summary_text']
         summary = summary + summary_text + ' '
+    if(len(summary) < 500):
+        return transcript
     return summary
 
 @app.get('/answer')

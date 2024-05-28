@@ -5,6 +5,7 @@ import google.generativeai as genai
 
 app = Flask(__name__)
 
+
 @app.get('/summary')
 def summary_api():
     url = request.args.get('url', '')
@@ -12,13 +13,17 @@ def summary_api():
     summary = get_summary(get_transcript(video_id))
     return summary, 200
 
+
 def get_transcript(video_id):
-    transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi','en'])
+    transcript_list = YouTubeTranscriptApi.get_transcript(
+        video_id, languages=['hi', 'en'])
     transcript = ' '.join([d['text'] for d in transcript_list])
     return transcript
 
+
 def get_summary(transcript):
-    summariser = pipeline(task = "summarization", model = "csebuetnlp/mT5_multilingual_XLSum")
+    summariser = pipeline(task="summarization",
+                          model="csebuetnlp/mT5_multilingual_XLSum")
     summary = ''
     for i in range(0, (len(transcript)//1000)+1):
         summary_text = summariser(
@@ -26,12 +31,14 @@ def get_summary(transcript):
         summary = summary + summary_text + ' '
     return summary
 
+
 @app.get('/answer')
 def answer_api():
-    summary = request.args.get('summary','')
+    summary = request.args.get('summary', '')
     question = summary.split('=')[0]
     answer = get_answer(question)
     return answer
+
 
 def get_answer(question):
 
@@ -41,32 +48,33 @@ def get_answer(question):
 
     # Set up the model
     generation_config = {
-    "temperature": 0.9,
-    "top_p": 1,
-    "top_k": 1,
-    "max_output_tokens": 2048,
+        "temperature": 0.9,
+        "top_p": 1,
+        "top_k": 1,
+        "max_output_tokens": 2048,
     }
 
     safety_settings = [
-    {
-        "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-    },
-    {
-        "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-    },
-    {
-        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-    },
+        {
+            "category": "HARM_CATEGORY_HARASSMENT",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
+        {
+            "category": "HARM_CATEGORY_HATE_SPEECH",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
+        {
+            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
+        {
+            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+        },
     ]
 
-    model = genai.GenerativeModel(model_name="gemini-1.0-pro", generation_config=generation_config, safety_settings=safety_settings)
+    model = genai.GenerativeModel(
+        model_name="gemini-1.0-pro", generation_config=generation_config, safety_settings=safety_settings)
 
     conversation = model.start_chat(history=[])
 
@@ -74,13 +82,16 @@ def get_answer(question):
 
     return conversation.last.text
 
+
 @app.get('/transcript')
 def transcript_provider():
     url = request.args.get('url', '')
     video_id = url.split('=')[1]
-    transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi','en'])
+    transcript_list = YouTubeTranscriptApi.get_transcript(
+        video_id, languages=['hi', 'en'])
     transcript = ' '.join([d['text'] for d in transcript_list])
     return transcript
+
 
 if __name__ == '__main__':
     app.run()

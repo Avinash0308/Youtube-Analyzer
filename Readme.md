@@ -4,7 +4,6 @@ YouTube Analyzer is a Chrome Extension that works with YouTube to provide you wi
 YouTube Analyzer can be used as a daily tool that can boost your YouTube Experience.
 
 **Project Demo Link:** https://youtu.be/SPqJzIG7zQA
-
 <br>
 
 ## Benefits of YouTube Analyzer
@@ -53,7 +52,7 @@ Followinng technologies are used to built Tumin:
 
 ### Analyzing The Video
 
-![video](https://github.com/Avinash0308/Youtube-Analyzer/blob/main/ReadMe_Images/Loader.mp4)
+https://github.com/user-attachments/assets/1ec86f98-d051-44fa-afc9-a8d5b111ea27
 
 ### Analyzed Content
 

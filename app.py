@@ -25,7 +25,7 @@ def get_summary(transcript):
     summariser = pipeline(task="summarization",
                           model="csebuetnlp/mT5_multilingual_XLSum")
     summary = ''
-    for i in range(0, (len(transcript)//1000)+1):
+    for i in range(0, (len(transcript)//500)+1):
         summary_text = summariser(
             transcript[i*500:(i+1)*500])[0]['summary_text']
         summary = summary + summary_text + ' '
@@ -44,7 +44,7 @@ def get_answer(question):
 
     convo = question
 
-    genai.configure(api_key="")
+    genai.configure(api_key="AIzaSyCSLT7qkguZQWQ-i_TeUN6gCqRH_fRzqxw")
 
     # Set up the model
     generation_config = {

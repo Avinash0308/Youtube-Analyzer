@@ -62,5 +62,8 @@ https://github.com/user-attachments/assets/1ec86f98-d051-44fa-afc9-a8d5b111ea27
 
 ![image](https://github.com/Avinash0308/Youtube-Analyzer/blob/main/ReadMe_Images/Query.png)
 
+## Install Dependencies
+
+### pip install -r Requirements.txt
 
 # Thanks💖

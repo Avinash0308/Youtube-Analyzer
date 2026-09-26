@@ -16,8 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Allow Cloud Run to set the port
+ENV PORT=8080
+EXPOSE $PORT
 
 # Run gunicorn with a long timeout because video processing takes time
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1", "--threads", "8", "--timeout", "300", "app:app"]
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 300 app:app

@@ -1,0 +1,499 @@
+/* ═══════════════════════════════════════════════════════════════
+   YouTube Analyzer — Inline Chat Panel
+   Matches YouTube's native design language (dark + light mode)
+   Theme is controlled via data-yta-theme attribute set by JS.
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* ─── Dark Mode (Default) ────────────────────────────────────── */
+#yta-container {
+    --yta-bg: #0f0f0f;
+    --yta-bg-elevated: #272727;
+    --yta-bg-hover: #3f3f3f;
+    --yta-bg-input: #272727;
+    --yta-text: #f1f1f1;
+    --yta-text-secondary: #aaaaaa;
+    --yta-text-dim: #717171;
+    --yta-border: #3a3a3a;
+    --yta-accent: #ff0000;
+    --yta-accent-bg: rgba(255, 0, 0, 0.1);
+    --yta-accent-border: rgba(255, 0, 0, 0.25);
+    --yta-chip-bg: transparent;
+    --yta-chip-border: #3a3a3a;
+    --yta-chip-hover: #3a3a3a;
+    --yta-send-bg: transparent;
+    --yta-send-color: #f1f1f1;
+    --yta-user-bg: #f2f2f2;
+    --yta-user-text: #0f0f0f;
+    --yta-error-bg: #3c1111;
+    --yta-error-text: #f1a0a0;
+    --yta-scrollbar: #3a3a3a;
+    --yta-btn-bg: #b30000;
+    --yta-btn-hover: #900000;
+    --yta-btn-text: #ffffff;
+    --yta-radius: 12px;
+    --yta-radius-sm: 8px;
+}
+
+/* ─── Light Mode Override ────────────────────────────────────── */
+#yta-container[data-yta-theme="light"] {
+    --yta-bg: #ffffff;
+    --yta-bg-elevated: #f2f2f2;
+    --yta-bg-hover: #e5e5e5;
+    --yta-bg-input: #f2f2f2;
+    --yta-text: #0f0f0f;
+    --yta-text-secondary: #606060;
+    --yta-text-dim: #909090;
+    --yta-border: #e5e5e5;
+    --yta-accent: #ff0000;
+    --yta-accent-bg: rgba(255, 0, 0, 0.06);
+    --yta-accent-border: rgba(255, 0, 0, 0.2);
+    --yta-chip-bg: transparent;
+    --yta-chip-border: #d0d0d0;
+    --yta-chip-hover: #e5e5e5;
+    --yta-send-bg: transparent;
+    --yta-send-color: #0f0f0f;
+    --yta-user-bg: #f2f2f2;
+    --yta-user-text: #0f0f0f;
+    --yta-error-bg: #fce8e8;
+    --yta-error-text: #c62828;
+    --yta-scrollbar: #d0d0d0;
+    --yta-btn-bg: #b30000;
+    --yta-btn-hover: #900000;
+    --yta-btn-text: #ffffff;
+}
+
+/* ─── Container ──────────────────────────────────────────────── */
+#yta-container {
+    font-family: 'Roboto', 'YouTube Noto', Arial, sans-serif;
+    color: var(--yta-text);
+    margin-bottom: 16px;
+    border-radius: var(--yta-radius);
+    border: 1px solid var(--yta-border);
+    overflow: hidden;
+    background: var(--yta-bg);
+    box-sizing: border-box;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+#yta-container *, #yta-container *::before, #yta-container *::after {
+    box-sizing: border-box;
+}
+
+/* ─── Collapsed Tab ──────────────────────────────────────────── */
+#yta-collapsed-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    user-select: none;
+}
+
+#yta-collapsed-tab:hover {
+    background: var(--yta-bg-hover);
+}
+
+#yta-tab-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+#yta-tab-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--yta-text);
+    flex: 1;
+}
+
+#yta-tab-arrow {
+    font-size: 12px;
+    color: var(--yta-text-secondary);
+}
+
+/* ─── Expanded Panel ─────────────────────────────────────────── */
+#yta-expanded-panel {
+    display: none;
+    flex-direction: column;
+    max-height: 75vh;
+}
+
+#yta-container.yta-expanded #yta-collapsed-tab {
+    display: none;
+}
+
+#yta-container.yta-expanded #yta-expanded-panel {
+    display: flex;
+}
+
+/* ─── Panel Header ───────────────────────────────────────────── */
+/* ─── Panel Header ───────────────────────────────────────────── */
+#yta-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    flex-shrink: 0;
+}
+
+#yta-panel-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#yta-header-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#yta-panel-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--yta-text);
+}
+
+#yta-panel-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--yta-text);
+    transition: background 0.2s;
+    padding: 0;
+}
+
+#yta-panel-close:hover {
+    background: var(--yta-bg-hover);
+}
+
+#yta-panel-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ─── Messages Area ──────────────────────────────────────────── */
+#yta-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 200px;
+    max-height: 50vh;
+    scroll-behavior: smooth;
+}
+
+#yta-messages::-webkit-scrollbar {
+    width: 4px;
+}
+
+#yta-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#yta-messages::-webkit-scrollbar-thumb {
+    background: var(--yta-scrollbar);
+    border-radius: 4px;
+}
+
+/* ─── Init Content ───────────────────────────────────────────── */
+#yta-init-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 12px;
+}
+
+#yta-init-text {
+    font-size: 14px;
+    color: var(--yta-text);
+    text-align: left;
+    line-height: 1.6;
+}
+
+#yta-init-btn {
+    display: inline-flex;
+    align-self: center;
+    margin-top: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 24px;
+    color: var(--yta-btn-text);
+    border: none;
+    border-radius: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: var(--yta-btn-bg);
+    transition: background 0.2s ease;
+}
+
+#yta-init-btn:hover {
+    background: var(--yta-btn-hover);
+}
+
+#yta-init-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ─── Loading State ──────────────────────────────────────────── */
+#yta-loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 16px;
+}
+
+#yta-loading.yta-visible {
+    display: flex;
+}
+
+.yta-loader {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--yta-border);
+    border-top-color: var(--yta-btn-bg);
+    border-radius: 50%;
+    animation: yta-spin 0.7s linear infinite;
+}
+
+@keyframes yta-spin {
+    to { transform: rotate(360deg); }
+}
+
+#yta-loading-label {
+    font-size: 13px;
+    color: var(--yta-text-secondary);
+}
+
+/* ─── Chat Messages ──────────────────────────────────────────── */
+.yta-msg {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    animation: yta-fadeIn 0.25s ease;
+}
+
+@keyframes yta-fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.yta-msg-user {
+    align-self: flex-end;
+    background: var(--yta-user-bg);
+    color: var(--yta-user-text);
+    padding: 10px 14px;
+    border-radius: 18px;
+    max-width: 85%;
+}
+
+.yta-msg-ai {
+    align-self: flex-start;
+    color: var(--yta-text);
+    padding: 4px 0;
+    width: 100%;
+}
+
+.yta-msg-ai strong,
+.yta-msg-ai b {
+    font-weight: 500;
+}
+
+.yta-msg-ai ul,
+.yta-msg-ai ol {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.yta-msg-ai li {
+    margin-bottom: 4px;
+}
+
+.yta-msg-ai code {
+    background: var(--yta-bg-elevated);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.yta-msg-ai h3, .yta-msg-ai h4 {
+    margin: 12px 0 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.yta-msg-ai p {
+    margin: 6px 0;
+}
+
+/* ─── Suggestion Chips ───────────────────────────────────────── */
+#yta-suggestions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.yta-suggestion-chip {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--yta-chip-bg);
+    border: 1px solid var(--yta-chip-border);
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: var(--yta-text);
+    cursor: pointer;
+    transition: background 0.15s;
+    text-align: right;
+    max-width: 90%;
+}
+
+.yta-suggestion-chip:hover {
+    background: var(--yta-chip-hover);
+}
+
+/* ─── Clickable Timestamps ───────────────────────────────────── */
+.yta-timestamp {
+    display: inline;
+    color: var(--yta-accent);
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.yta-timestamp:hover {
+    text-decoration: underline;
+}
+
+/* ─── Typing Indicator ───────────────────────────────────────── */
+.yta-typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 4px;
+    align-self: flex-start;
+}
+
+.yta-typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--yta-text-dim);
+    border-radius: 50%;
+    animation: yta-bounce 1.2s ease-in-out infinite;
+}
+
+.yta-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.yta-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes yta-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+    30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ─── Input Area ─────────────────────────────────────────────── */
+#yta-input-area {
+    padding: 8px 12px 12px;
+    flex-shrink: 0;
+}
+
+#yta-input-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+#yta-chat-input {
+    flex: 1;
+    background: var(--yta-bg-elevated);
+    color: var(--yta-text);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 24px;
+    resize: none;
+    max-height: 100px;
+    line-height: 1.4;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+
+#yta-chat-input::placeholder {
+    color: var(--yta-text-dim);
+}
+
+#yta-send-btn {
+    width: 42px;
+    height: 42px;
+    background: var(--yta-send-bg);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    color: var(--yta-send-color);
+    padding: 0;
+}
+
+#yta-send-btn:hover:not(:disabled) {
+    background: var(--yta-bg-hover);
+}
+
+#yta-send-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#yta-send-btn svg {
+    width: 26px;
+    height: 26px;
+    stroke: currentColor;
+}
+
+#yta-disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--yta-text-dim);
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ─── Error Messages ─────────────────────────────────────────── */
+.yta-error-msg {
+    background: var(--yta-error-bg) !important;
+    color: var(--yta-error-text) !important;
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+    font-size: 13px !important;
+}

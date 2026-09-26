@@ -1,20 +1,32 @@
-{ 
+{
     "manifest_version": 3,
-    "name": "Youtube Analyzer",
-    "description": "An extension to analyze youtube videos using the transcript",
-    "version": "1.0",
-    "permissions": ["activeTab", "declarativeContent"],
-    "host_permissions": ["http://127.0.0.1:5000/*"],
-    
+    "name": "YouTube Analyzer",
+    "description": "AI-powered YouTube video analyzer with visual understanding, summaries, Q&A, and comment analysis",
+    "version": "2.0",
+
+    "permissions": ["activeTab"],
+    "host_permissions": [
+        "http://127.0.0.1:5000/*",
+        "https://www.youtube.com/*"
+    ],
+
+    "content_scripts": [
+        {
+            "matches": ["https://www.youtube.com/watch*"],
+            "css": ["sidebar.css"],
+            "js": ["sidebar.js"],
+            "run_at": "document_idle"
+        }
+    ],
+
     "action": {
-        "default_title": "Analyze this video",
+        "default_title": "YouTube Analyzer",
         "default_icon": {
             "16": "images/icon.png",
             "32": "images/icon.png",
             "48": "images/icon.png",
             "128": "images/icon.png"
-        },
-        "default_popup": "analyzer.html"
+        }
     },
 
     "icons": {
@@ -22,5 +34,12 @@
         "32": "images/icon.png",
         "48": "images/icon.png",
         "128": "images/icon.png"
-    }
+    },
+
+    "web_accessible_resources": [
+        {
+            "resources": ["images/icon.png"],
+            "matches": ["https://www.youtube.com/*"]
+        }
+    ]
 }

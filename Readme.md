@@ -3,7 +3,7 @@
 YouTube Analyzer is a Chrome Extension that works with YouTube to provide you with small summary of the video and resolve your queries related to it in just a click.
 YouTube Analyzer can be used as a daily tool that can boost your YouTube Experience.
 
-**Project Demo Link:** https://youtu.be/SPqJzIG7zQA
+**Project Demo Link:** https://youtu.be/tQ9NwhwwHBE
 <br>
 
 ## Benefits of YouTube Analyzer
